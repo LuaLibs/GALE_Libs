@@ -1,0 +1,5 @@
+.*
+*.lua~
+MKL_Backup/*
+*.MKL
+*.ini
