@@ -64,8 +64,13 @@ Select W
 End Function
 ]]
 
+function GetAngle(A,B) -- A routine Jani sent me.
+  return math.deg(math.atan2(B.y-A.y,B.x-A.x))
+end
+-- Returns in radians
 
 function CoordsToAngle(RPX,RPY,RCX,RCY)
+     --[[ on rem to try Jani's method 
      local Overstaande 
      local Aanliggende 
      local Tanges
@@ -107,5 +112,9 @@ function CoordsToAngle(RPX,RPY,RCX,RCY)
          angle = rand(0,360)
      end
      altangle = altangle or angle
-     return math.deg(angle),altangle              
+     return math.deg(angle),altangle     
+     -- ]]
+     local a = {x= RPX , y = RPY}
+     local b = {x= RCX , y = RCY}
+     return GetAngle(a,b)  + 90       
 end
