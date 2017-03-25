@@ -1,8 +1,8 @@
 --[[
   ClearTable.lua
   Clear Table
-  version: 16.12.17
-  Copyright (C) 2016 Jeroen P. Broks
+  version: 17.02.18
+  Copyright (C) 2016, 2017 Jeroen P. Broks
   This software is provided 'as-is', without any express or implied
   warranty.  In no event will the authors be held liable for any damages
   arising from the use of this software.
@@ -24,3 +24,5 @@ function cleartable(table)
    for _,k in ipairs(elements) do table[k]=nil end
    -- This double approach is eating extra RAM and speed, I know, but experience taught me that doing this directly does spook up iterators causing very nasty effects (and half of the table not being emptied)
 end
+
+ClearTable = cleartable

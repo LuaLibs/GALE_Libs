@@ -1,8 +1,8 @@
 --[[
-  Quick String Routines.lua
-  Quick String Routines
-  version: 17.03.25
-  Copyright (C) 2015, 2016, 2017 Jeroen P. Broks
+  Blends.lua
+  
+  version: 17.02.18
+  Copyright (C) 2017 Jeroen P. Broks
   This software is provided 'as-is', without any express or implied
   warranty.  In no event will the authors be held liable for any damages
   arising from the use of this software.
@@ -17,32 +17,20 @@
      misrepresented as being the original software.
   3. This notice may not be removed or altered from any source distribution.
 ]]
--- These routines only work when the GALE.Strings module has been included
+MaskBlend = 1
+AlphaBlend = 3
+LightBlend = 4
+SolidBlend = 2
+ShadeBlend = 5
 
 
-function mid(txt,o,l)
-return Str.Mid(txt,o,l or 1)
-end
+Blends = { Mask=MaskBlend, Alpha=AlphaBlend, Light=LightBlend, Solid=SolidBlend, Shade=ShadeBlend}
 
-function left(txt,l)
-return Str.Left(txt,l or 1)
-end
 
-function right(txt,pl)
-  local l = pl or 1
-  if l>0 then
-    return Str.Right(txt,l)
-  elseif l<0 then
-    return Str.Right(txt,#txt+l)
-  else
-    return ""
-  end  
-end
+-- @IF IGNORE
+return Blends
+-- @FI
 
-function upper(txt)
-return Str.Upper(txt)
-end
 
-function lower(txt)
-return Str.Lower(txt)
-end
+
+-- This is just a file containing the numbers the underlying blitzmax API uses
