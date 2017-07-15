@@ -1,8 +1,8 @@
 --[[
-  Append.lua
-  Append
+  SerializeIntoSysVar.lua
+  
   version: 17.07.15
-  Copyright (C) 2016, 2017 Jeroen P. Broks
+  Copyright (C) 2017 Jeroen P. Broks
   This software is provided 'as-is', without any express or implied
   warranty.  In no event will the authors be held liable for any damages
   arising from the use of this software.
@@ -17,12 +17,19 @@
      misrepresented as being the original software.
   3. This notice may not be removed or altered from any source distribution.
 ]]
---[[
-    (c) JPB 2015
-    zLIB License
-]]
-
-
-function append(tablevar,value)
-   tablevar[#tablevar+1]=value
+function StoreVar(slot,v)
+    Var.D("$STOREDVARIABLE$"..upper(slot).."$",serialize('local ret',v).."\nreturn ret")
 end
+
+function RetrieveVar(slot)
+    local script = CVVN("$STOREDVARIABLES$"..upper(slot).."$")
+    if not script then return nil end
+    local suc,ret = pcal(loadstring(script))
+    if not suc then 
+       CSay("WARNING! Retrieving a variable from slot '"..slot.."' went wrong",255,180,0)
+       CSay("    "..ret,180,0,250)
+       return nil
+    end
+    return ret
+end    
+           

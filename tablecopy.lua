@@ -1,8 +1,8 @@
 --[[
-  Append.lua
-  Append
+  tablecopy.lua
+  
   version: 17.07.15
-  Copyright (C) 2016, 2017 Jeroen P. Broks
+  Copyright (C) 2017 Jeroen P. Broks
   This software is provided 'as-is', without any express or implied
   warranty.  In no event will the authors be held liable for any damages
   arising from the use of this software.
@@ -17,12 +17,27 @@
      misrepresented as being the original software.
   3. This notice may not be removed or altered from any source distribution.
 ]]
---[[
-    (c) JPB 2015
-    zLIB License
-]]
+
+function tablecopy(atable,pointersonly)
+     local ret = {}
+     for k,v in pairs(atable) do
+         if type(v)=='table' and (not pointersonly) then 
+            ret[k] = tablecopy(v)
+         else   
+            ret[k]=v
+         end
+     end
+     return ret
+end     
 
 
-function append(tablevar,value)
-   tablevar[#tablevar+1]=value
-end
+--[[ This basically copies content of a table into a new table.
+     Tables inside the table will be recreated in stead of just
+     making a new pointer. This will allow you to create all data 
+     anew. If you put in "true" as the second argument this function
+     itself will create a new table, but the tables inside the table
+     will remain at the same pointer
+     
+     You follow?
+     
+]]       

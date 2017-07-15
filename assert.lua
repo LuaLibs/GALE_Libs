@@ -52,6 +52,8 @@
 Version: 15.07.20
 
 ]]
+
+-- As of 17.04.01 this entire lib has been deprecated (no that ain't an april fools joke). :P
 function t_assert(booleanvalue,error,substuff)
-if not booleanvalue then Sys.Error(error,substuff) end
+    if not booleanvalue then Sys.Error(error,substuff) end
 end
